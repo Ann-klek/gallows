@@ -30,8 +30,8 @@ priv = '''Привет игрок, давай поиграем
 если ты не отгадаешь слово. 
 Всего попыток отгадать слово 6. Удачи '''
 canvas.create_text(320, 235, text=priv, fill="black", font=("Helvetica", 14))
-#fruit = ['апельсин', 'мандарин', 'банан', 'груша', 'яблоко']
-fruit = []
+fruit = ['апельсин', 'мандарин', 'банан', 'груша', 'яблоко']
+
 veg = ['огурец', 'помидор', 'баклажан', 'капуста', 'морковь']
 berr = ['клюква', 'смородина', 'клубника', 'малина', 'ежевика']
 btimg = PhotoImage(file="red-cross-mark-clipart-227244.png")
@@ -178,7 +178,7 @@ def chice(arr, btn01Id, btn02Id, btn03Id):
                     elif cnt == 30:
                         text2 = "Вы выиграли эту игру. Слов больше нет"
                     else:
-                        text2 = "Вы отгадали " + str(cnt) + " слов"
+                        text2 = "Вы отгадали " + str(cnt) + " слов. ВЫ молодец"
 
                     canvas.create_text(320, 235, text=text2, fill="black", font=("Helvetica", 14))
                     btnex = Button(root, text="Выйти из игры", width=15, height=2, command=lambda: quit())
