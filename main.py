@@ -34,6 +34,9 @@ a = '''Привет игрок, давай поиграем
 Всего попыток отгадать слово 6. '''
 canvas.create_text(320, 235, text=a, fill="black", font=("Helvetica", 14))
 fruit = ['апельсин', 'мандарин', 'банан', 'груша', 'яблоко']
+veg = ['огурец', 'помидор', 'баклажан', 'капуста', 'морковь']
+berr = ['клюква', 'смородина', 'клубника', 'малина', 'ежевика']
+
 def chice(arr):
     but()
     word = random.choice(arr)
@@ -193,9 +196,15 @@ def chice(arr):
 
 
 
+def tema():
+    canvas.delete(btn1)
+    btn01 = Button(root, text="Выбрать тему", width=15, height=2, command = lambda: chice(fruit))
+    btn01.place(x=258, y=458)
+    btn01["bg"] = "#00a388"
 
 
-btn1 = Button(root, text="Выбрать тему", width=15, height=2, command = lambda: chice(fruit))
+global btn1
+btn1: Button = Button(root, text="Выбрать тему", width=15, height=2, command = lambda: tema())
 btn1.place(x=258, y=458)
 btn1["bg"] = "#00a388"
 
