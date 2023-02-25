@@ -20,18 +20,18 @@ def but():
 
 global priv
 priv = '''Привет игрок, давай поиграем
-Пользователь выбирает тему, 
-и программа загадывает слово на эту тему.
-Игроку известно только количество букв.
-Пользователь должен отгадать слово. 
-Для этого он вводит поочередно буквы.
+Выбирай тему, и программа загадает слово на эту тему.
+Тебе известно только количество букв.
+Ты должен отгадать слово. 
+Для этого вводи поочередно буквы.
 Если такой буквы в слове нет, 
 то рисуется часть тела человечка,
 который может быть повешен в случае,
-если игрок не отгадает слово. 
-Всего попыток отгадать слово 6. '''
+если ты не отгадаешь слово. 
+Всего попыток отгадать слово 6. Удачи '''
 canvas.create_text(320, 235, text=priv, fill="black", font=("Helvetica", 14))
-fruit = ['апельсин', 'мандарин', 'банан', 'груша', 'яблоко']
+#fruit = ['апельсин', 'мандарин', 'банан', 'груша', 'яблоко']
+fruit = []
 veg = ['огурец', 'помидор', 'баклажан', 'капуста', 'морковь']
 berr = ['клюква', 'смородина', 'клубника', 'малина', 'ежевика']
 btimg = PhotoImage(file="red-cross-mark-clipart-227244.png")
@@ -60,7 +60,7 @@ def exgame():
         btn1Id = canvas.create_window(258, 458, anchor=NW, window=btn1, width=115, height=40)
         btn1["bg"] = "#00a388"
 
-        btn2 = Button(root, text="Выйти из игры", width=15, height=2)
+        btn2 = Button(root, text="Выйти из игры", width=15, height=2, command=lambda: quit())
         btn2Id = canvas.create_window(258, 508, anchor=NW, window=btn2, width=115, height=40)
         btn2["bg"] = "#00a388"
     def no():
@@ -77,80 +77,228 @@ def exgame():
 
 
 def chice(arr, btn01Id, btn02Id, btn03Id):
-    but()
-    canvas.delete(btn02Id)
-    canvas.delete(btn01Id)
-    canvas.delete(btn03Id)
-    word = random.choice(arr)
-    arr.remove(word)
+    texter = ''
+    if not arr:
+        texter = canvas.create_text(300, 400, text="Выберите другую тему, \n в этой все слова отгадан", fill="red", font=("helvetica", "18"))
+    else:
+        canvas.delete(texter)
+        but()
+        canvas.delete(btn02Id)
+        canvas.delete(btn01Id)
+        canvas.delete(btn03Id)
+        word = random.choice(arr)
+        arr.remove(word)
 
-    print(arr)
-    wo = []
-    for i in word:
-        wo.append(i)
-        x = 282
-    wor = wo
-    wo = list(set(wo))
-    list1 = []
-    for i in range(1, len(wor) + 1):
-        a = canvas.create_text(x, 60, text="_", fill="black", font=("helvetica", "18"))
-        x += 33
-        list1.append(i)
-    global alphabet
-    alphabet = ["а", "б", "в", "г", "д", "е", "ё", "ж", "з", "и", "й", "к", "л",
-                "м", "н", "о", "п", "р", "с", "т", "у", "ф", "х", "ц", "ч", "ш", "щ", "ъ",
-                "ы", "ь", "э", "ю", "я"]
-    er = []
-    win = []
-    btn04Id = canvas.create_window(540, 10, anchor=NW, window=btn04, width=35, height=40)
+        print(arr)
+        wo = []
+        for i in word:
+            wo.append(i)
+            x = 282
+        wor = wo
+        wo = list(set(wo))
+        list1 = []
+        for i in range(1, len(wor) + 1):
+            a = canvas.create_text(x, 60, text="_", fill="black", font=("helvetica", "18"))
+            x += 33
+            list1.append(i)
+        global alphabet
+        alphabet = ["а", "б", "в", "г", "д", "е", "ё", "ж", "з", "и", "й", "к", "л",
+                    "м", "н", "о", "п", "р", "с", "т", "у", "ф", "х", "ц", "ч", "ш", "щ", "ъ",
+                    "ы", "ь", "э", "ю", "я"]
+        er = []
+        win = []
+        btn04Id = canvas.create_window(540, 10, anchor=NW, window=btn04, width=35, height=40)
 
-    def func(v):
-        global cnt
-        ind_alf = alphabet.index(v)
-        key = alphabet[ind_alf]
+        def func(v):
+            global cnt
+            ind_alf = alphabet.index(v)
+            key = alphabet[ind_alf]
 
-        if v in wor:
-            ind = wo.index(v)
-            b2 = list1[ind]
-            wo[ind] = 1
-            print(b2)
-            def kord():
-                x1 = 282
-                y1 = 60
-                for j in range(1, len(wor) + 1):
-                    if b2 != j:
-                        x1 += 32
-                    else:
-                        return x1, y1
+            if v in wor:
+                ind = wo.index(v)
+                b2 = list1[ind]
+                wo[ind] = 1
+                print(b2)
+                def kord():
+                    x1 = 282
+                    y1 = 60
+                    for j in range(1, len(wor) + 1):
+                        if b2 != j:
+                            x1 += 32
+                        else:
+                            return x1, y1
 
 
-            print(kord())
+                print(kord())
 
-            win.append(v)
-            x1, y1 = kord()
-            #canvas.create_text(x1, y1, text=wor[ind], fill="black", font=("Helvetica", "18"))
-            ind2 = wor.index(v)
-            b2 = list1[ind2]
-            co = 0
-            for j in wor:
-                if wor[ind2] == j:
-                    co += 1
-            if co == 1:
+                win.append(v)
                 x1, y1 = kord()
-                canvas.create_text(x1, y1, text=wor[ind2], fill="black", font=("Helvetica", "18"))
-            else:
-                for j in range(len(wor)):
-                    print(wor[ind2])
-                    print(wor[j])
-                    if wor[ind2] == wor[j]:
-                        b2 = j + 1
-                        x1, y1 = kord()
-                        canvas.create_text(x1, y1, text=wor[ind2], fill="black", font=("Helvetica", "18"))
+                #canvas.create_text(x1, y1, text=wor[ind], fill="black", font=("Helvetica", "18"))
+                ind2 = wor.index(v)
+                b2 = list1[ind2]
+                co = 0
+                for j in wor:
+                    if wor[ind2] == j:
+                        co += 1
+                if co == 1:
+                    x1, y1 = kord()
+                    canvas.create_text(x1, y1, text=wor[ind2], fill="black", font=("Helvetica", "18"))
+                else:
+                    for j in range(len(wor)):
+                        print(wor[ind2])
+                        print(wor[j])
+                        if wor[ind2] == wor[j]:
+                            b2 = j + 1
+                            x1, y1 = kord()
+                            canvas.create_text(x1, y1, text=wor[ind2], fill="black", font=("Helvetica", "18"))
 
-           # print(len(win))
-            #print(win)
-            #print(len(list1))
-            def yesw():
+               # print(len(win))
+                #print(win)
+                #print(len(list1))
+                def yesw():
+                    canvas.delete('all')
+                    canvas.create_text(320, 235, text=priv, fill="black", font=("Helvetica", 14))
+                    btn1 = Button(text="Выбрать тему", width=15, height=2, command=lambda: tema(btn1Id, btn2Id))
+                    # btn1.place(x=258, y=458)
+                    # btn1["bg"] = "#00a388"
+                    btn1Id = canvas.create_window(258, 458, anchor=NW, window=btn1, width=115, height=40)
+                    btn1["bg"] = "#00a388"
+
+                    btn2 = Button(root, text="Выйти из игры", width=15, height=2, command=lambda: quit())
+                    btn2Id = canvas.create_window(258, 508, anchor=NW, window=btn2, width=115, height=40)
+                    btn2["bg"] = "#00a388"
+
+                def now():
+                    canvas.delete('all')
+
+                    if cnt == 1:
+                        text2 = "Вы отгадали " + str(cnt) + " словo. Вы молодец. До свидания"
+                    elif cnt == 2 or cnt == 3 or cnt == 4:
+                        text2 = "Вы отгадали " + str(cnt) + " слова. Вы молодец. До свидания"
+                    elif cnt == 30:
+                        text2 = "Вы выиграли эту игру. Слов больше нет"
+                    else:
+                        text2 = "Вы отгадали " + str(cnt) + " слов"
+
+                    canvas.create_text(320, 235, text=text2, fill="black", font=("Helvetica", 14))
+                    btnex = Button(root, text="Выйти из игры", width=15, height=2, command=lambda: quit())
+                    btnexId = canvas.create_window(258, 508, anchor=NW, window=btnex, width=115, height=40)
+                    btnex["bg"] = "#00a388"
+
+                if len(win) == len(wo):
+                    #canvas.create_text(150, 150, text="ВЫИГРАЛ", fill="black", font=("Helvetica", "18"))
+                    cnt += 1
+                    for i in alphabet:
+                        btnsdict[i]["state"] = "disabled"
+                    canvas.create_text(220, 418, text="Вы отгадали слово \n Сыграем еще раз?", fill="black", font=("Helvetica", "18"))
+                    btwy = Button(root, text="Да", width=15, height=2, command=lambda: yesw())
+                    btwyid = canvas.create_window(270, 458, anchor=NW, window=btwy, width=115, height=40)
+                    btwy["bg"] = "#00a388"
+                    btwn = Button(root, text="Нет", width=15, height=2, command=lambda: now())
+                    btwnid = canvas.create_window(390, 458, anchor=NW, window=btwn, width=115, height=40)
+                    btwn["bg"] = "#00a388"
+
+
+                #canvas.create_text(x1, y1, text=wor[ind], fill="black", font=("Helvetica", "18"))
+                btnsdict[key]["bg"] = "green"
+                if not v in wo:
+                    btnsdict[key]["state"] = "disabled"
+            else:
+                er.append(v)
+                btnsdict[key]["bg"] = "red"
+                btnsdict[key]["state"] = "disabled"
+                global txt, count
+                if len(er) == 1:
+                    golova()
+                    txt = canvas.create_text(400, 20, text='Осталось 5 попыток', fill="black", font=("Helvetica", "15") )
+                elif len(er) == 2:
+                    canvas.delete(txt)
+                    telo()
+                    txt = canvas.create_text(400, 20, text='Осталось 4 попытки', fill="black", font=("Helvetica", "15"))
+                elif len(er) == 3:
+                    canvas.delete(txt)
+                    txt = canvas.create_text(400, 20, text='Осталось 3 попытки', fill="black", font=("Helvetica", "15"))
+                    rukal()
+                elif len(er) == 4:
+                    canvas.delete(txt)
+                    rukar()
+                    txt = canvas.create_text(400, 20, text='Осталось 2 попытки', fill="black", font=("Helvetica", "15"))
+                elif len(er) == 5:
+                    canvas.delete(txt)
+                    nogal()
+                    txt = canvas.create_text(400, 20, text='Осталось 1 попытка', fill="black", font=("Helvetica", "15"))
+                elif len(er) == 6:
+                    nogar()
+                    end()
+                    root.update()
+
+        global btnsdict
+        btnsdict = {}
+
+        def gen(u, x, y):
+            #btnsdict[u] = Button(root, text=u, width=3, height=1, command=lambda: func(u))
+            #btnsdict[u].place(x=str(x), y=str(y))
+            print(u)
+            btnsdict[u] = Button(root, text=u, width=3, height=1, highlightthickness=0, command=lambda: func(u))
+            btndictId = canvas.create_window(x, y, anchor=NW, window=btnsdict[u], width=40, height=40)
+            #btn03["bg"] = "#00a388"
+        x = 265
+        y = 110
+        for i in alphabet[0:8]:
+            gen(i, x, y)
+            x += 33
+        x = 265
+        y = 136
+        for i in alphabet[8:16]:
+            gen(i, x, y)
+            x += 33
+        x = 265
+        y = 162
+        for i in alphabet[16:24]:
+            gen(i, x, y)
+            x += 33
+        x = 265
+        y = 188
+        for i in alphabet[24:33]:
+            gen(i, x, y)
+            x += 33
+
+        def golova():
+            canvas.create_oval(130, 59, 170, 100, width=4, fill="white")
+            root.update()
+        def telo():
+            canvas.create_oval(150, 100, 150, 180, width=4, fill="white")
+            root.update()
+
+        def rukal():
+            canvas.create_line(150, 100, 105, 130, width=4, fill="black")
+            root.update()
+
+        def rukar():
+            canvas.create_line(150, 100, 195, 130, width=4, fill="black")
+            root.update()
+
+        def nogal():
+            canvas.create_line(150, 180, 105, 210, width=4, fill="black")
+            root.update()
+
+        def nogar():
+            canvas.create_line(150, 180, 195, 210, width=4, fill="black")
+            root.update()
+
+        def end():
+            #canvas.create_text(150, 150, text="Проиграл(", fill="black", font=("Helvetica", "18"))
+            for i in alphabet:
+                btnsdict[i]["state"] = "disabled"
+            canvas.create_text(220, 418, text="Вы не отгадали слово(( \n Сыграем еще раз?", fill="black", font=("Helvetica", "18"))
+            btfy = Button(root, text="Да", width=15, height=2, command=lambda: yesf())
+            btfyid = canvas.create_window(270, 458, anchor=NW, window=btfy, width=115, height=40)
+            btfy["bg"] = "#00a388"
+            btfn = Button(root, text="Нет", width=15, height=2, command=lambda: nof())
+            btfnid = canvas.create_window(390, 458, anchor=NW, window=btfn, width=115, height=40)
+            btfn["bg"] = "#00a388"
+
+            def yesf():
                 canvas.delete('all')
                 canvas.create_text(320, 235, text=priv, fill="black", font=("Helvetica", 14))
                 btn1 = Button(text="Выбрать тему", width=15, height=2, command=lambda: tema(btn1Id, btn2Id))
@@ -163,13 +311,13 @@ def chice(arr, btn01Id, btn02Id, btn03Id):
                 btn2Id = canvas.create_window(258, 508, anchor=NW, window=btn2, width=115, height=40)
                 btn2["bg"] = "#00a388"
 
-            def now():
+            def nof():
                 canvas.delete('all')
 
                 if cnt == 1:
                     text2 = "Вы отгадали " + str(cnt) + " словo. Вы молодец. До свидания"
                 elif cnt == 2 or cnt == 3 or cnt == 4:
-                    text2 = "Вы отгадали " + str(cnt) + " словаВы молодец. До свидания"
+                    text2 = "Вы отгадали " + str(cnt) + " слова. Вы молодец. До свидания"
                 elif cnt == 30:
                     text2 = "Вы выиграли эту игру. Слов больше нет"
                 else:
@@ -180,111 +328,6 @@ def chice(arr, btn01Id, btn02Id, btn03Id):
                 btnexId = canvas.create_window(258, 508, anchor=NW, window=btnex, width=115, height=40)
                 btnex["bg"] = "#00a388"
 
-            if len(win) == len(wo):
-                canvas.create_text(150, 150, text="ВЫИГРАЛ", fill="black", font=("Helvetica", "18"))
-                cnt += 1
-                for i in alphabet:
-                    btnsdict[i]["state"] = "disabled"
-                canvas.create_text(120, 458,text="Сыграем еще раз?", fill="black", font=("Helvetica", "18"))
-                btwy = Button(root, text="Да", width=15, height=2, command=lambda: yesw())
-                btwyid = canvas.create_window(270, 458, anchor=NW, window=btwy, width=115, height=40)
-                btwy["bg"] = "#00a388"
-                btwn = Button(root, text="Нет", width=15, height=2, command=lambda: now())
-                btwnid = canvas.create_window(390, 458, anchor=NW, window=btwn, width=115, height=40)
-                btwn["bg"] = "#00a388"
-
-
-            #canvas.create_text(x1, y1, text=wor[ind], fill="black", font=("Helvetica", "18"))
-            btnsdict[key]["bg"] = "green"
-            if not v in wo:
-                btnsdict[key]["state"] = "disabled"
-        else:
-            er.append(v)
-            btnsdict[key]["bg"] = "red"
-            btnsdict[key]["state"] = "disabled"
-            global txt, count
-            if len(er) == 1:
-                golova()
-                txt = canvas.create_text(400, 20, text='Осталось 5 попыток', fill="black", font=("Helvetica", "15") )
-            elif len(er) == 2:
-                canvas.delete(txt)
-                telo()
-                txt = canvas.create_text(400, 20, text='Осталось 4 попытки', fill="black", font=("Helvetica", "15"))
-            elif len(er) == 3:
-                canvas.delete(txt)
-                txt = canvas.create_text(400, 20, text='Осталось 3 попытки', fill="black", font=("Helvetica", "15"))
-                rukal()
-            elif len(er) == 4:
-                canvas.delete(txt)
-                rukar()
-                txt = canvas.create_text(400, 20, text='Осталось 2 попытки', fill="black", font=("Helvetica", "15"))
-            elif len(er) == 5:
-                canvas.delete(txt)
-                nogal()
-                txt = canvas.create_text(400, 20, text='Осталось 1 попытка', fill="black", font=("Helvetica", "15"))
-            elif len(er) == 6:
-                nogar()
-                end()
-                root.update()
-
-    global btnsdict
-    btnsdict = {}
-
-    def gen(u, x, y):
-        #btnsdict[u] = Button(root, text=u, width=3, height=1, command=lambda: func(u))
-        #btnsdict[u].place(x=str(x), y=str(y))
-        print(u)
-        btnsdict[u] = Button(root, text=u, width=3, height=1, highlightthickness=0, command=lambda: func(u))
-        btndictId = canvas.create_window(x, y, anchor=NW, window=btnsdict[u], width=40, height=40)
-        #btn03["bg"] = "#00a388"
-    x = 265
-    y = 110
-    for i in alphabet[0:8]:
-        gen(i, x, y)
-        x += 33
-    x = 265
-    y = 136
-    for i in alphabet[8:16]:
-        gen(i, x, y)
-        x += 33
-    x = 265
-    y = 162
-    for i in alphabet[16:24]:
-        gen(i, x, y)
-        x += 33
-    x = 265
-    y = 188
-    for i in alphabet[24:33]:
-        gen(i, x, y)
-        x += 33
-
-    def golova():
-        canvas.create_oval(130, 59, 170, 100, width=4, fill="white")
-        root.update()
-    def telo():
-        canvas.create_oval(150, 100, 150, 180, width=4, fill="white")
-        root.update()
-
-    def rukal():
-        canvas.create_line(150, 100, 105, 130, width=4, fill="black")
-        root.update()
-
-    def rukar():
-        canvas.create_line(150, 100, 195, 130, width=4, fill="black")
-        root.update()
-
-    def nogal():
-        canvas.create_line(150, 180, 105, 210, width=4, fill="black")
-        root.update()
-
-    def nogar():
-        canvas.create_line(150, 180, 195, 210, width=4, fill="black")
-        root.update()
-
-    def end():
-        canvas.create_text(150, 150, text="Проиграл(", fill="black", font=("Helvetica", "18"))
-        for i in alphabet:
-            btnsdict[i]["state"] = "disabled"
 
 
 
