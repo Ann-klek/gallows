@@ -2,7 +2,7 @@ from tkinter import *
 import random
 root = Tk()
 root.title("Виселица")
-canvas = Canvas(root, width=600, height=600)
+canvas = Canvas(root, width=600, height=600, highlightthickness=0)
 canvas.pack()
 
 def but():
