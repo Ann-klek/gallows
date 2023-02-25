@@ -34,7 +34,19 @@ canvas.create_text(320, 235, text=a, fill="black", font=("Helvetica", 14))
 fruit = ['апельсин', 'мандарин', 'банан', 'груша', 'яблоко']
 veg = ['огурец', 'помидор', 'баклажан', 'капуста', 'морковь']
 berr = ['клюква', 'смородина', 'клубника', 'малина', 'ежевика']
+btimg = PhotoImage(file="red-cross-mark-clipart-227244.png")
+btimg = btimg.subsample(18, 18)
+btn04 = Button(root, text="", width=10, bd=0, image=btimg, highlightthickness=0, command=lambda: exgame())
 
+
+def exgame():
+    text1 = canvas.create_text(150, 500, text="Уже уходите?", fill="black", font=("Helvetica", "16"))
+    btnyes = Button(root, text="Да", width=15, height=2)
+    btnyesId = canvas.create_window(290, 480, anchor=NW, window=btnyes, width=115, height=40)
+    btnyes["bg"] = "#00a388"
+    btnno = Button(root, text="Нет", width=15, height=2)
+    btnnoId = canvas.create_window(450, 480, anchor=NW, window=btnno, width=115, height=40)
+    btnno["bg"] = "#00a388"
 def chice(arr, btn01Id, btn02Id, btn03Id):
     but()
     canvas.delete(btn02Id)
@@ -57,14 +69,7 @@ def chice(arr, btn01Id, btn02Id, btn03Id):
                 "ы", "ь", "э", "ю", "я"]
     er = []
     win = []
-    # buttonimg = PhotoImage(file="red-cross-mark-clipart-227244.png")
-    # buttonimg = buttonimg.subsample(10, 10)
-    #btn04 = Button(root, text="", width=100, bd=0, image=buttonimg, highlightthickness=0)
-    #btn04Id = canvas.create_window(500, 10, anchor=NW, window=btn04, width=115, height=40)
-    btimg = PhotoImage(file="red-cross-mark-clipart-227244.png")
-    btimg = btimg.subsample(10, 10)
-    btn04 = Button(text="", width=100, image=btimg, bd=0, highlightthickness=0).place(x=133, y=100)
-    btn04Id = canvas.create_window(10, 20, anchor=NW, window=btn04, width=100, height=50)
+    btn04Id = canvas.create_window(540, 10, anchor=NW, window=btn04, width=35, height=40)
 
     def func(v):
         ind_alf = alphabet.index(v)
