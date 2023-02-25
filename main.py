@@ -83,7 +83,7 @@ def chice(arr, btn01Id, btn02Id, btn03Id):
     canvas.delete(btn03Id)
     word = random.choice(arr)
     arr.remove(word)
-    print(word)
+
     print(arr)
     wo = []
     for i in word:
@@ -113,7 +113,7 @@ def chice(arr, btn01Id, btn02Id, btn03Id):
             ind = wo.index(v)
             b2 = list1[ind]
             wo[ind] = 1
-            #print(b2)
+            print(b2)
             def kord():
                 x1 = 282
                 y1 = 60
@@ -124,7 +124,7 @@ def chice(arr, btn01Id, btn02Id, btn03Id):
                         return x1, y1
 
 
-            #print(kord())
+            print(kord())
 
             win.append(v)
             x1, y1 = kord()
@@ -140,8 +140,8 @@ def chice(arr, btn01Id, btn02Id, btn03Id):
                 canvas.create_text(x1, y1, text=wor[ind2], fill="black", font=("Helvetica", "18"))
             else:
                 for j in range(len(wor)):
-                    #print(wor[ind2])
-                    #print(wor[j])
+                    print(wor[ind2])
+                    print(wor[j])
                     if wor[ind2] == wor[j]:
                         b2 = j + 1
                         x1, y1 = kord()
@@ -165,10 +165,13 @@ def chice(arr, btn01Id, btn02Id, btn03Id):
 
             def now():
                 canvas.delete('all')
+
                 if cnt == 1:
-                    text2 = "Вы отгадали " + str(cnt) + " словo"
+                    text2 = "Вы отгадали " + str(cnt) + " словo. Вы молодец. До свидания"
                 elif cnt == 2 or cnt == 3 or cnt == 4:
-                    text2 = "Вы отгадали " + str(cnt) + " слова"
+                    text2 = "Вы отгадали " + str(cnt) + " словаВы молодец. До свидания"
+                elif cnt == 30:
+                    text2 = "Вы выиграли эту игру. Слов больше нет"
                 else:
                     text2 = "Вы отгадали " + str(cnt) + " слов"
 
@@ -230,7 +233,7 @@ def chice(arr, btn01Id, btn02Id, btn03Id):
     def gen(u, x, y):
         #btnsdict[u] = Button(root, text=u, width=3, height=1, command=lambda: func(u))
         #btnsdict[u].place(x=str(x), y=str(y))
-        #print(u)
+        print(u)
         btnsdict[u] = Button(root, text=u, width=3, height=1, highlightthickness=0, command=lambda: func(u))
         btndictId = canvas.create_window(x, y, anchor=NW, window=btnsdict[u], width=40, height=40)
         #btn03["bg"] = "#00a388"
