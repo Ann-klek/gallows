@@ -18,9 +18,7 @@ def but():
     canvas.create_line(30, 60, 65, 20, width=4)
     canvas.create_line(155, 20, 155, 60, width=4)
 
-btn2 = Button(root, text="Выйти из игры", width=15, height=2)
-btn2.place(x=258, y=508)
-btn2["bg"] = "#00a388"
+
 a = '''Привет игрок, давай поиграем
 Пользователь выбирает тему, 
 и программа загадывает слово на эту тему.
@@ -39,6 +37,9 @@ berr = ['клюква', 'смородина', 'клубника', 'малина'
 
 def chice(arr):
     but()
+    canvas.delete(btn02Id)
+    canvas.delete(btn01Id)
+    canvas.delete(btn03Id)
     word = random.choice(arr)
     wo = []
     for i in word:
@@ -197,15 +198,26 @@ def chice(arr):
 
 
 def tema():
-    canvas.delete(btn1)
-    btn01 = Button(root, text="Выбрать тему", width=15, height=2, command = lambda: chice(fruit))
-    btn01.place(x=258, y=458)
+    canvas.delete(btnId)
+    canvas.delete(btn2Id)
+    btn01 = Button(root, text="Фрукты", width=15, height=2, command = lambda: chice(fruit)
+    btn01Id = canvas.create_window(130, 458, anchor=NW, window=btn01, width=115, height=40)
     btn01["bg"] = "#00a388"
+    btn02 = Button(root, text="Овощи", width=15, height=2, command=lambda: chice(veg))
+    btn02Id = canvas.create_window(260, 458, anchor=NW, window=btn02, width=115, height=40)
+    btn02["bg"] = "#00a388"
+    btn03 = Button(root, text="Ягоды", width=15, height=2, command=lambda: chice(berr))
+    btn03Id = canvas.create_window(390, 458, anchor=NW, window=btn03, width=115, height=40)
+    btn03["bg"] = "#00a388"
 
 
-global btn1
-btn1: Button = Button(root, text="Выбрать тему", width=15, height=2, command = lambda: tema())
-btn1.place(x=258, y=458)
+btn1 = Button(text="Выбрать тему", width=15, height=2, command=tema)
+# btn1.place(x=258, y=458)
+# btn1["bg"] = "#00a388"
+btnId = canvas.create_window(258, 458, anchor=NW, window=btn1, width=115, height=40)
 btn1["bg"] = "#00a388"
 
+btn2 = Button(root, text="Выйти из игры", width=15, height=2)
+btn2Id = canvas.create_window(258, 508, anchor=NW, window=btn2, width=115, height=40)
+btn2["bg"] = "#00a388"
 root.mainloop()
