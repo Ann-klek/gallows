@@ -139,6 +139,9 @@ def chice(arr):
         x += 33
 
     def end():
+        canvas.create_text(150, 150, text="Проиграл(", fill="black", font=("Helvetica", "18"))
+        for i in alphabet:
+            btn[i]["state"] = "disabled"
 
 
 
