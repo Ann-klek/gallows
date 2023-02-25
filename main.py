@@ -57,10 +57,14 @@ def chice(arr, btn01Id, btn02Id, btn03Id):
                 "ы", "ь", "э", "ю", "я"]
     er = []
     win = []
-    buttonimg = PhotoImage(file="close_icon.png")
-    buttonimg = buttonimg.subsample(2,2)
-    btn04 = Button(root, text="", width=15, height=2, bd=0, image=buttonimg, highlightthickness=0)
-    btn04Id = canvas.create_window(500, 10, anchor=NW, window=btn04, width=115, height=40)
+    # buttonimg = PhotoImage(file="red-cross-mark-clipart-227244.png")
+    # buttonimg = buttonimg.subsample(10, 10)
+    #btn04 = Button(root, text="", width=100, bd=0, image=buttonimg, highlightthickness=0)
+    #btn04Id = canvas.create_window(500, 10, anchor=NW, window=btn04, width=115, height=40)
+    btimg = PhotoImage(file="red-cross-mark-clipart-227244.png")
+    btimg = btimg.subsample(10, 10)
+    btn04 = Button(text="", width=100, image=btimg, bd=0, highlightthickness=0).place(x=133, y=100)
+    btn04Id = canvas.create_window(10, 20, anchor=NW, window=btn04, width=100, height=50)
 
     def func(v):
         ind_alf = alphabet.index(v)
