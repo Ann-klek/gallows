@@ -108,9 +108,19 @@ def chice(arr):
             btn[key]["bg"] = "red"
             btn[key]["state"] = "disabled"
             if len(er) == 1:
-                #golova()
+                golova()
             elif len(er) == 2:
-                #telo
+                #telo()
+            elif len(er) == 3:
+                #rukal()
+            elif len(er) == 4:
+                #rukar()
+            elif len(er) == 5:
+                #nogal()
+            elif len(er) == 6:
+                #nogar()
+                end()
+                root.update()
 
     btn = {}
 
@@ -137,6 +147,33 @@ def chice(arr):
     for i in alphabet[24:33]:
         gen(i, x, y)
         x += 33
+
+    def golova():
+        canvas.create_oval(79, 59, 120, 80, width=4, fill="white")
+        root.update()
+    def telo():
+        canvas.create_oval(79, 59, 120, 80, width=4, fill="white")
+        root.update()
+
+    def rukal():
+        canvas.create_oval(79, 59, 120, 80, width=4, fill="white")
+        root.update()
+
+        def rukal():
+            canvas.create_line(79, 59, 120, 80, width=4, fill="white")
+            root.update()
+
+        def rukar():
+            canvas.create_line(79, 59, 120, 80, width=4, fill="white")
+            root.update()
+
+    def nogal():
+        canvas.create_line(79, 59, 120, 80, width=4, fill="white")
+        root.update()
+
+    def nogar():
+        canvas.create_line(79, 59, 120, 80, width=4, fill="white")
+        root.update()
 
     def end():
         canvas.create_text(150, 150, text="Проиграл(", fill="black", font=("Helvetica", "18"))
