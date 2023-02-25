@@ -13,6 +13,8 @@ def but():
             canvas.create_rectangle(x, y, x + 33, y + 27, fill="white", outline="#999999")
             x = x + 33
         y = y + 27
+    canvas.create_line(30, 20, 30, 450, width=4)
+    canvas.create_line(30, 20, 155, 20, width=4)
 
 btn2 = Button(root, text="Выйти из игры", width=15, height=2)
 btn2.place(x=258, y=508)
@@ -110,15 +112,15 @@ def chice(arr):
             if len(er) == 1:
                 golova()
             elif len(er) == 2:
-                #telo()
+                telo()
             elif len(er) == 3:
-                #rukal()
+                rukal()
             elif len(er) == 4:
-                #rukar()
+                rukar()
             elif len(er) == 5:
-                #nogal()
+                nogal()
             elif len(er) == 6:
-                #nogar()
+                nogar()
                 end()
                 root.update()
 
@@ -149,30 +151,26 @@ def chice(arr):
         x += 33
 
     def golova():
-        canvas.create_oval(79, 59, 120, 80, width=4, fill="white")
+        canvas.create_oval(130, 59, 170, 100, width=4, fill="white")
         root.update()
     def telo():
-        canvas.create_oval(79, 59, 120, 80, width=4, fill="white")
+        canvas.create_oval(150, 100, 150, 180, width=4, fill="white")
         root.update()
 
     def rukal():
-        canvas.create_oval(79, 59, 120, 80, width=4, fill="white")
+        canvas.create_line(150, 100, 105, 130, width=4, fill="black")
         root.update()
 
-        def rukal():
-            canvas.create_line(79, 59, 120, 80, width=4, fill="white")
-            root.update()
-
-        def rukar():
-            canvas.create_line(79, 59, 120, 80, width=4, fill="white")
-            root.update()
+    def rukar():
+        canvas.create_line(150, 100, 195, 130, width=4, fill="black")
+        root.update()
 
     def nogal():
-        canvas.create_line(79, 59, 120, 80, width=4, fill="white")
+        canvas.create_line(150, 180, 105, 210, width=4, fill="black")
         root.update()
 
     def nogar():
-        canvas.create_line(79, 59, 120, 80, width=4, fill="white")
+        canvas.create_line(150, 180, 195, 210, width=4, fill="black")
         root.update()
 
     def end():
