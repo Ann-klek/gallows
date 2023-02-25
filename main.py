@@ -107,6 +107,11 @@ def chice(arr):
             er.append(v)
             btn[key]["bg"] = "red"
             btn[key]["state"] = "disabled"
+            if len(er) == 1:
+                #golova()
+            elif len(er) == 2:
+                #telo
+
     btn = {}
 
     def gen(u, x, y):
@@ -132,6 +137,9 @@ def chice(arr):
     for i in alphabet[24:33]:
         gen(i, x, y)
         x += 33
+
+    def end():
+
 
 
 
