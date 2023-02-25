@@ -15,6 +15,8 @@ def but():
         y = y + 27
     canvas.create_line(30, 20, 30, 450, width=4)
     canvas.create_line(30, 20, 155, 20, width=4)
+    canvas.create_line(30, 60, 65, 20, width=4)
+    canvas.create_line(155, 20, 155, 60, width=4)
 
 btn2 = Button(root, text="Выйти из игры", width=15, height=2)
 btn2.place(x=258, y=508)
@@ -43,7 +45,7 @@ def chice(arr):
     wo = list(set(wo))
     list1 = []
     for i in range(1, len(wor) + 1):
-        a = canvas.create_text(x, 40, text="_", fill="black", font=("helvetica", "18"))
+        a = canvas.create_text(x, 60, text="_", fill="black", font=("helvetica", "18"))
         x += 33
         list1.append(i)
     alphabet = ["а", "б", "в", "г", "д", "е", "ё", "ж", "з", "и", "й", "к", "л",
@@ -63,7 +65,7 @@ def chice(arr):
             print(b2)
             def kord():
                 x1 = 282
-                y1 = 40
+                y1 = 60
                 for j in range(1, len(wor) + 1):
                     if b2 != j:
                         x1 += 32
@@ -109,16 +111,26 @@ def chice(arr):
             er.append(v)
             btn[key]["bg"] = "red"
             btn[key]["state"] = "disabled"
+            global txt
             if len(er) == 1:
                 golova()
+                txt = canvas.create_text(400, 20, text='Осталось 5 попыток', fill="black", font=("Helvetica", "15") )
             elif len(er) == 2:
+                canvas.delete(txt)
                 telo()
+                txt = canvas.create_text(400, 20, text='Осталось 4 попытки', fill="black", font=("Helvetica", "15"))
             elif len(er) == 3:
+                canvas.delete(txt)
+                txt = canvas.create_text(400, 20, text='Осталось 3 попытки', fill="black", font=("Helvetica", "15"))
                 rukal()
             elif len(er) == 4:
+                canvas.delete(txt)
                 rukar()
+                txt = canvas.create_text(400, 20, text='Осталось 2 попытки', fill="black", font=("Helvetica", "15"))
             elif len(er) == 5:
+                canvas.delete(txt)
                 nogal()
+                txt = canvas.create_text(400, 20, text='Осталось 1 попытка', fill="black", font=("Helvetica", "15"))
             elif len(er) == 6:
                 nogar()
                 end()
