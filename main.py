@@ -18,8 +18,8 @@ def but():
     l3 = canvas.create_line(30, 60, 65, 20, width=4)
     l4 = canvas.create_line(155, 20, 155, 60, width=4)
 
-global a
-a = '''Привет игрок, давай поиграем
+global priv
+priv = '''Привет игрок, давай поиграем
 Пользователь выбирает тему, 
 и программа загадывает слово на эту тему.
 Игроку известно только количество букв.
@@ -30,7 +30,7 @@ a = '''Привет игрок, давай поиграем
 который может быть повешен в случае,
 если игрок не отгадает слово. 
 Всего попыток отгадать слово 6. '''
-canvas.create_text(320, 235, text=a, fill="black", font=("Helvetica", 14))
+canvas.create_text(320, 235, text=priv, fill="black", font=("Helvetica", 14))
 fruit = ['апельсин', 'мандарин', 'банан', 'груша', 'яблоко']
 veg = ['огурец', 'помидор', 'баклажан', 'капуста', 'морковь']
 berr = ['клюква', 'смородина', 'клубника', 'малина', 'ежевика']
@@ -53,7 +53,7 @@ def exgame():
 
     def yes():
         canvas.delete('all')
-        canvas.create_text(320, 235, text=a, fill="black", font=("Helvetica", 14))
+        canvas.create_text(320, 235, text=priv, fill="black", font=("Helvetica", 14))
         btn1 = Button(text="Выбрать тему", width=15, height=2, command=lambda: tema(btn1Id, btn2Id))
         # btn1.place(x=258, y=458)
         # btn1["bg"] = "#00a388"
@@ -82,6 +82,9 @@ def chice(arr, btn01Id, btn02Id, btn03Id):
     canvas.delete(btn01Id)
     canvas.delete(btn03Id)
     word = random.choice(arr)
+    arr.remove(word)
+    print(word)
+    print(arr)
     wo = []
     for i in word:
         wo.append(i)
@@ -110,7 +113,7 @@ def chice(arr, btn01Id, btn02Id, btn03Id):
             ind = wo.index(v)
             b2 = list1[ind]
             wo[ind] = 1
-            print(b2)
+            #print(b2)
             def kord():
                 x1 = 282
                 y1 = 60
@@ -121,7 +124,7 @@ def chice(arr, btn01Id, btn02Id, btn03Id):
                         return x1, y1
 
 
-            print(kord())
+            #print(kord())
 
             win.append(v)
             x1, y1 = kord()
@@ -137,8 +140,8 @@ def chice(arr, btn01Id, btn02Id, btn03Id):
                 canvas.create_text(x1, y1, text=wor[ind2], fill="black", font=("Helvetica", "18"))
             else:
                 for j in range(len(wor)):
-                    print(wor[ind2])
-                    print(wor[j])
+                    #print(wor[ind2])
+                    #print(wor[j])
                     if wor[ind2] == wor[j]:
                         b2 = j + 1
                         x1, y1 = kord()
@@ -149,30 +152,39 @@ def chice(arr, btn01Id, btn02Id, btn03Id):
             #print(len(list1))
             def yesw():
                 canvas.delete('all')
-                canvas.create_text(320, 235, text=a, fill="black", font=("Helvetica", 14))
+                canvas.create_text(320, 235, text=priv, fill="black", font=("Helvetica", 14))
                 btn1 = Button(text="Выбрать тему", width=15, height=2, command=lambda: tema(btn1Id, btn2Id))
                 # btn1.place(x=258, y=458)
                 # btn1["bg"] = "#00a388"
                 btn1Id = canvas.create_window(258, 458, anchor=NW, window=btn1, width=115, height=40)
                 btn1["bg"] = "#00a388"
 
-                btn2 = Button(root, text="Выйти из игры", width=15, height=2)
+                btn2 = Button(root, text="Выйти из игры", width=15, height=2, command=lambda: quit())
                 btn2Id = canvas.create_window(258, 508, anchor=NW, window=btn2, width=115, height=40)
                 btn2["bg"] = "#00a388"
 
             def now():
                 canvas.delete('all')
-                text2 = "Вы отгадали " + str(cnt) + " слов"
+                if cnt == 1:
+                    text2 = "Вы отгадали " + str(cnt) + " словo"
+                elif cnt == 2 or cnt == 3 or cnt == 4:
+                    text2 = "Вы отгадали " + str(cnt) + " слова"
+                else:
+                    text2 = "Вы отгадали " + str(cnt) + " слов"
+
                 canvas.create_text(320, 235, text=text2, fill="black", font=("Helvetica", 14))
+                btnex = Button(root, text="Выйти из игры", width=15, height=2, command=lambda: quit())
+                btnexId = canvas.create_window(258, 508, anchor=NW, window=btnex, width=115, height=40)
+                btnex["bg"] = "#00a388"
 
             if len(win) == len(wo):
                 canvas.create_text(150, 150, text="ВЫИГРАЛ", fill="black", font=("Helvetica", "18"))
                 cnt += 1
                 for i in alphabet:
                     btnsdict[i]["state"] = "disabled"
-                canvas.create_text(100, 458,text="Сыграем еще раз?", fill="black", font=("Helvetica", "18"))
+                canvas.create_text(120, 458,text="Сыграем еще раз?", fill="black", font=("Helvetica", "18"))
                 btwy = Button(root, text="Да", width=15, height=2, command=lambda: yesw())
-                btwyid = canvas.create_window(290, 458, anchor=NW, window=btwy, width=115, height=40)
+                btwyid = canvas.create_window(270, 458, anchor=NW, window=btwy, width=115, height=40)
                 btwy["bg"] = "#00a388"
                 btwn = Button(root, text="Нет", width=15, height=2, command=lambda: now())
                 btwnid = canvas.create_window(390, 458, anchor=NW, window=btwn, width=115, height=40)
@@ -218,7 +230,7 @@ def chice(arr, btn01Id, btn02Id, btn03Id):
     def gen(u, x, y):
         #btnsdict[u] = Button(root, text=u, width=3, height=1, command=lambda: func(u))
         #btnsdict[u].place(x=str(x), y=str(y))
-        print(u)
+        #print(u)
         btnsdict[u] = Button(root, text=u, width=3, height=1, highlightthickness=0, command=lambda: func(u))
         btndictId = canvas.create_window(x, y, anchor=NW, window=btnsdict[u], width=40, height=40)
         #btn03["bg"] = "#00a388"
