@@ -35,7 +35,7 @@ fruit = ['апельсин', 'мандарин', 'банан', 'груша', 'я
 veg = ['огурец', 'помидор', 'баклажан', 'капуста', 'морковь']
 berr = ['клюква', 'смородина', 'клубника', 'малина', 'ежевика']
 
-def chice(arr):
+def chice(arr, btn01Id, btn02Id, btn03Id):
     but()
     canvas.delete(btn02Id)
     canvas.delete(btn01Id)
@@ -200,13 +200,13 @@ def chice(arr):
 def tema():
     canvas.delete(btnId)
     canvas.delete(btn2Id)
-    btn01 = Button(root, text="Фрукты", width=15, height=2, command = lambda: chice(fruit)
+    btn01 = Button(root, text="Фрукты", width=15, height=2, command = lambda: chice(fruit, btn01Id, btn02Id, btn03Id))
     btn01Id = canvas.create_window(130, 458, anchor=NW, window=btn01, width=115, height=40)
     btn01["bg"] = "#00a388"
-    btn02 = Button(root, text="Овощи", width=15, height=2, command=lambda: chice(veg))
+    btn02 = Button(root, text="Овощи", width=15, height=2, command=lambda: chice(veg, btn01Id, btn02Id, btn03Id))
     btn02Id = canvas.create_window(260, 458, anchor=NW, window=btn02, width=115, height=40)
     btn02["bg"] = "#00a388"
-    btn03 = Button(root, text="Ягоды", width=15, height=2, command=lambda: chice(berr))
+    btn03 = Button(root, text="Ягоды", width=15, height=2, command=lambda: chice(berr, btn01Id, btn02Id, btn03Id))
     btn03Id = canvas.create_window(390, 458, anchor=NW, window=btn03, width=115, height=40)
     btn03["bg"] = "#00a388"
 
