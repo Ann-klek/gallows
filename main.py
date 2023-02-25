@@ -79,7 +79,7 @@ def exgame():
 def chice(arr, btn01Id, btn02Id, btn03Id):
     texter = ''
     if not arr:
-        texter = canvas.create_text(300, 400, text="Выберите другую тему, \n в этой все слова отгадан", fill="red", font=("helvetica", "18"))
+        texter = canvas.create_text(300, 400, text="Выберите другую тему, \n в этой все слова отгаданы", fill="red", font=("helvetica", "18"))
     else:
         canvas.delete(texter)
         but()
@@ -178,7 +178,7 @@ def chice(arr, btn01Id, btn02Id, btn03Id):
                     elif cnt == 30:
                         text2 = "Вы выиграли эту игру. Слов больше нет"
                     else:
-                        text2 = "Вы отгадали " + str(cnt) + " слов. ВЫ молодец"
+                        text2 = "Вы отгадали " + str(cnt) + " слов. ВЫ молодец."
 
                     canvas.create_text(320, 235, text=text2, fill="black", font=("Helvetica", 14))
                     btnex = Button(root, text="Выйти из игры", width=15, height=2, command=lambda: quit())
