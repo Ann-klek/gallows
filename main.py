@@ -18,7 +18,7 @@ def but():
     l3 = canvas.create_line(30, 60, 65, 20, width=4)
     l4 = canvas.create_line(155, 20, 155, 60, width=4)
 
-
+global a
 a = '''Привет игрок, давай поиграем
 Пользователь выбирает тему, 
 и программа загадывает слово на эту тему.
@@ -37,7 +37,8 @@ berr = ['клюква', 'смородина', 'клубника', 'малина'
 btimg = PhotoImage(file="red-cross-mark-clipart-227244.png")
 btimg = btimg.subsample(18, 18)
 btn04 = Button(root, text="", width=10, bd=0, image=btimg, highlightthickness=0, command=lambda: exgame())
-
+global cnt
+cnt = int(0)
 
 def exgame():
     text1 = canvas.create_text(150, 500, text="Уже уходите?", fill="black", font=("Helvetica", "16"))
@@ -101,6 +102,7 @@ def chice(arr, btn01Id, btn02Id, btn03Id):
     btn04Id = canvas.create_window(540, 10, anchor=NW, window=btn04, width=35, height=40)
 
     def func(v):
+        global cnt
         ind_alf = alphabet.index(v)
         key = alphabet[ind_alf]
 
@@ -145,10 +147,38 @@ def chice(arr, btn01Id, btn02Id, btn03Id):
            # print(len(win))
             #print(win)
             #print(len(list1))
+            def yesw():
+                canvas.delete('all')
+                canvas.create_text(320, 235, text=a, fill="black", font=("Helvetica", 14))
+                btn1 = Button(text="Выбрать тему", width=15, height=2, command=lambda: tema(btn1Id, btn2Id))
+                # btn1.place(x=258, y=458)
+                # btn1["bg"] = "#00a388"
+                btn1Id = canvas.create_window(258, 458, anchor=NW, window=btn1, width=115, height=40)
+                btn1["bg"] = "#00a388"
+
+                btn2 = Button(root, text="Выйти из игры", width=15, height=2)
+                btn2Id = canvas.create_window(258, 508, anchor=NW, window=btn2, width=115, height=40)
+                btn2["bg"] = "#00a388"
+
+            def now():
+                canvas.delete('all')
+                text2 = "Вы отгадали " + str(cnt) + " слов"
+                canvas.create_text(320, 235, text=text2, fill="black", font=("Helvetica", 14))
+
             if len(win) == len(wo):
                 canvas.create_text(150, 150, text="ВЫИГРАЛ", fill="black", font=("Helvetica", "18"))
+                cnt += 1
                 for i in alphabet:
                     btnsdict[i]["state"] = "disabled"
+                canvas.create_text(100, 458,text="Сыграем еще раз?", fill="black", font=("Helvetica", "18"))
+                btwy = Button(root, text="Да", width=15, height=2, command=lambda: yesw())
+                btwyid = canvas.create_window(290, 458, anchor=NW, window=btwy, width=115, height=40)
+                btwy["bg"] = "#00a388"
+                btwn = Button(root, text="Нет", width=15, height=2, command=lambda: now())
+                btwnid = canvas.create_window(390, 458, anchor=NW, window=btwn, width=115, height=40)
+                btwn["bg"] = "#00a388"
+
+
             #canvas.create_text(x1, y1, text=wor[ind], fill="black", font=("Helvetica", "18"))
             btnsdict[key]["bg"] = "green"
             if not v in wo:
@@ -157,7 +187,7 @@ def chice(arr, btn01Id, btn02Id, btn03Id):
             er.append(v)
             btnsdict[key]["bg"] = "red"
             btnsdict[key]["state"] = "disabled"
-            global txt
+            global txt, count
             if len(er) == 1:
                 golova()
                 txt = canvas.create_text(400, 20, text='Осталось 5 попыток', fill="black", font=("Helvetica", "15") )
@@ -258,13 +288,17 @@ def tema(btnId, btn2Id):
     btn03["bg"] = "#00a388"
 
 
+def quit():
+    root.destroy()
+
+
 btn1 = Button(text="Выбрать тему", width=15, height=2, command=lambda: tema(btnId, btn2Id))
 # btn1.place(x=258, y=458)
 # btn1["bg"] = "#00a388"
 btnId = canvas.create_window(258, 458, anchor=NW, window=btn1, width=115, height=40)
 btn1["bg"] = "#00a388"
 
-btn2 = Button(root, text="Выйти из игры", width=15, height=2, command=root.destroy)
+btn2 = Button(root, text="Выйти из игры", width=15, height=2, command=quit)
 btn2Id = canvas.create_window(258, 508, anchor=NW, window=btn2, width=115, height=40)
 btn2["bg"] = "#00a388"
 root.mainloop()
